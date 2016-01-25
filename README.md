@@ -24,7 +24,7 @@ const Remi = require('remi')
 const remiExpose = require('remi-expose')
 
 let remi = new Remi({
-  extensions: [remiExpose],
+  extensions: [{ extension: remiExpose }],
 })
 ```
 

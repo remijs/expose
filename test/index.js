@@ -4,7 +4,7 @@ const expect = chai.expect
 
 const plugiator = require('plugiator')
 const Remi = require('remi')
-const expose = require('../')
+const expose = require('..')
 
 describe('plugin expose', function() {
   let app
@@ -12,9 +12,7 @@ describe('plugin expose', function() {
 
   beforeEach(function() {
     app = {}
-    remi = new Remi({
-      extensions: [expose],
-    })
+    remi = new Remi({ extensions: [{ extension: expose }] })
   })
 
   it('should expose property', function() {
@@ -42,28 +40,43 @@ describe('plugin expose', function() {
 
   it('should have a plugin namespace in plugins', function() {
     let plugin = plugiator.create('foo-plugin', (app, options) => {
+      expect(app.plugins.fooPlugin).to.be.not.undefined
+    })
+
+    return remi.register(app, [plugin])
+      .then(() => expect(app.plugins.fooPlugin).to.be.not.undefined)
+  })
+
+  it('should not camel case the plugin namespace', function() {
+    let plugin = plugiator.create('foo-plugin', (app, options) => {
       expect(app.plugins['foo-plugin']).to.be.not.undefined
     })
 
+    let remi = new Remi({
+      extensions: [{
+        extension: expose,
+        options: { camelCase: false },
+      },],
+    })
     return remi.register(app, [plugin])
       .then(() => expect(app.plugins['foo-plugin']).to.be.not.undefined)
   })
 
   it('should share the plugin namespace through register invocations', function() {
     let plugin = plugiator.create('foo-plugin', (app, options) => {
-      expect(app.plugins['foo-plugin']).to.be.not.undefined
+      expect(app.plugins.fooPlugin).to.be.not.undefined
     })
 
     return remi
-      .register(app, plugin, {})
+      .register(app, [plugin], {})
       .then(() => {
-        expect(app.plugins['foo-plugin']).to.be.not.undefined
+        expect(app.plugins.fooPlugin).to.be.not.undefined
 
         return remi.register(app, [plugiator.noop()], {})
       })
       .then(() => {
         expect(app.plugins).to.be.not.undefined
-        expect(app.plugins['foo-plugin']).to.be.not.undefined
+        expect(app.plugins.fooPlugin).to.be.not.undefined
       })
   })
 })

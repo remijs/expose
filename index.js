@@ -1,19 +1,28 @@
 'use strict'
-const merge = require('merge')
+const camelCase = require('camelcase')
 
 module.exports = function(remi, opts) {
+  function getPluginName(plugin) {
+    if (opts.camelCase === false) return plugin.name
+
+    return camelCase(plugin.name)
+  }
+
   remi.pre('createPlugin', function(next, target, plugin) {
+    let pluginName = getPluginName(plugin)
+
     target.plugins = target.plugins || {}
     target.root.plugins = target.plugins
-    target.plugins[plugin.name] = target.plugins[plugin.name] || {}
 
-    next(merge(target, {
+    target.plugins[pluginName] = {}
+
+    next(Object.assign({}, target, {
       expose(key, value) {
         if (typeof key === 'string') {
-          target.plugins[plugin.name][key] = value
+          target.plugins[pluginName][key] = value
           return
         }
-        target.plugins[plugin.name] = merge(target.plugins[plugin.name], key)
+        target.plugins[pluginName] = Object.assign({}, target.plugins[pluginName], key)
       },
     }), plugin)
   })

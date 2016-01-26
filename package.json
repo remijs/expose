@@ -1,6 +1,6 @@
 {
   "name": "remi-expose",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A remi extension that adds the expose method to the target",
   "main": "index.js",
   "scripts": {

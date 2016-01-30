@@ -20,12 +20,12 @@ npm i remi-expose
 Registering the extension
 
 ```js
-const Remi = require('remi')
+const remi = require('remi')
 const remiExpose = require('remi-expose')
 
-let remi = new Remi({
-  extensions: [{ extension: remiExpose }],
-})
+let app = {}
+let registrator = remi(app)
+registrator.hook(remiExpose())
 ```
 
 Once the remi-expose extension is registered, the remi plugins can expose values.
@@ -38,8 +38,9 @@ Used within a plugin to expose a property via app.plugins[name] where:
 * `value` - the value assigned.
 
 ```js
-exports.register = function(app, opts) {
+exports.register = function(app, opts, next) {
   app.expose('util', () => console.log('something'))
+  next()
 }
 ```
 
@@ -51,12 +52,13 @@ Merges a shallow copy of an object into to the existing content of `server.plugi
 * `obj` - the object merged into the exposed properties container.
 
 ```js
-exports.register = function(app, opts) {
+exports.register = function(app, opts, next) {
   app.expose({
     util() {
       console.log('something')
     },
   })
+  next()
 }
 ```
 

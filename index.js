@@ -1,14 +1,16 @@
 'use strict'
 const camelCase = require('camelcase')
 
-module.exports = function(remi, opts) {
+module.exports = function(opts) {
+  opts = opts || {}
+
   function getPluginName(plugin) {
     if (opts.camelCase === false) return plugin.name
 
     return camelCase(plugin.name)
   }
 
-  remi.pre('createPlugin', function(next, target, plugin) {
+  return (next, target, plugin, cb) => {
     let pluginName = getPluginName(plugin)
 
     target.plugins = target.plugins || {}
@@ -24,6 +26,6 @@ module.exports = function(remi, opts) {
         }
         target.plugins[pluginName] = Object.assign({}, target.plugins[pluginName], key)
       },
-    }), plugin)
-  })
+    }), plugin, cb)
+  }
 }

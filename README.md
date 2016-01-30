@@ -2,10 +2,10 @@
 
 A remi extension that adds the expose method to the target
 
-[![Dependency Status](https://david-dm.org/zkochan/remi-expose/status.svg?style=flat)](https://david-dm.org/zkochan/remi-expose)
-[![Build Status](https://travis-ci.org/zkochan/remi-expose.svg?branch=master)](https://travis-ci.org/zkochan/remi-expose)
+[![Dependency Status](https://david-dm.org/remijs/expose/status.svg?style=flat)](https://david-dm.org/remijs/expose)
+[![Build Status](https://travis-ci.org/remijs/expose.svg?branch=master)](https://travis-ci.org/remijs/expose)
 [![npm version](https://badge.fury.io/js/remi-expose.svg)](http://badge.fury.io/js/remi-expose)
-[![Coverage Status](https://coveralls.io/repos/zkochan/remi-expose/badge.svg?branch=master&service=github)](https://coveralls.io/github/zkochan/remi-expose?branch=master)
+[![Coverage Status](https://coveralls.io/repos/remijs/expose/badge.svg?branch=master&service=github)](https://coveralls.io/github/remijs/expose?branch=master)
 
 
 ## Installation

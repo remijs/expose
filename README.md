@@ -30,7 +30,7 @@ registrator.hook(remiExpose())
 
 Once the remi-expose extension is registered, the remi plugins can expose values.
 
-## app.expose(key, value)
+## `app.expose(key, value)`
 
 Used within a plugin to expose a property via app.plugins[name] where:
 
@@ -45,7 +45,7 @@ exports.register = function(app, opts, next) {
 ```
 
 
-## server.expose(obj)
+## `server.expose(obj)`
 
 Merges a shallow copy of an object into to the existing content of `server.plugins[name]` where:
 

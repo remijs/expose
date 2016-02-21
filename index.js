@@ -1,7 +1,7 @@
 'use strict'
 const camelCase = require('camelcase')
 
-module.exports = function(opts) {
+module.exports = opts => {
   opts = opts || {}
 
   function getPluginName(plugin) {
@@ -11,7 +11,7 @@ module.exports = function(opts) {
   }
 
   return (next, target, plugin, cb) => {
-    let pluginName = getPluginName(plugin)
+    const pluginName = getPluginName(plugin)
 
     target.plugins = target.plugins || {}
     target.root.plugins = target.plugins
@@ -24,7 +24,12 @@ module.exports = function(opts) {
           target.plugins[pluginName][key] = value
           return
         }
-        target.plugins[pluginName] = Object.assign({}, target.plugins[pluginName], key)
+
+        target.plugins[pluginName] = Object.assign(
+          {},
+          target.plugins[pluginName],
+          key
+        )
       },
     }), plugin, cb)
   }

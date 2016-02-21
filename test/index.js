@@ -43,7 +43,7 @@ describe('plugin expose', function() {
   })
 
   it('should have a plugin namespace in plugins', function() {
-    let plugin = plugiator.create('foo-plugin', (app, options, next) => {
+    const plugin = plugiator.create('foo-plugin', (app, options, next) => {
       expect(app.plugins.fooPlugin).to.be.not.undefined
       next()
     })
@@ -53,12 +53,12 @@ describe('plugin expose', function() {
   })
 
   it('should not camel case the plugin namespace', function() {
-    let plugin = plugiator.create('foo-plugin', (app, options, next) => {
+    const plugin = plugiator.create('foo-plugin', (app, options, next) => {
       expect(app.plugins['foo-plugin']).to.be.not.undefined
       next()
     })
 
-    let registrator = remi(app)
+    const registrator = remi(app)
     registrator.hook(expose({ camelCase: false }))
 
     return registrator.register([plugin])
@@ -66,7 +66,7 @@ describe('plugin expose', function() {
   })
 
   it('should share the plugin namespace through register invocations', function() {
-    let plugin = plugiator.create('foo-plugin', (app, options, next) => {
+    const plugin = plugiator.create('foo-plugin', (app, options, next) => {
       expect(app.plugins.fooPlugin).to.be.not.undefined
       next()
     })

@@ -19,6 +19,7 @@
   ],
   "keywords": [
     "remi",
+    "remi-extension",
     "extension",
     "expose"
   ],
@@ -32,12 +33,15 @@
     "url": "https://github.com/remijs/remi-expose/issues"
   },
   "homepage": "https://github.com/remijs/remi-expose#readme",
+  "peerDependencies": {
+    "remi": "1.x.x"
+  },
   "devDependencies": {
     "chai": "^3.4.1",
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
     "plugiator": "^0.1.1",
-    "remi": "^0.5.0"
+    "remi": "1.x.x"
   },
   "dependencies": {
     "camelcase": "^2.1.0"

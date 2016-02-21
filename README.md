@@ -10,7 +10,7 @@ A remi extension that adds the expose method to the target
 
 ## Installation
 
-``` sh
+```
 npm i remi-expose
 ```
 
@@ -23,8 +23,8 @@ Registering the extension
 const remi = require('remi')
 const remiExpose = require('remi-expose')
 
-let app = {}
-let registrator = remi(app)
+const app = {}
+const registrator = remi(app)
 registrator.hook(remiExpose())
 ```
 
@@ -65,4 +65,4 @@ exports.register = function(app, opts, next) {
 
 ## License
 
-MIT © [Zoltan Kochan](https://github.com/zkochan)
+MIT © [Zoltan Kochan](https://www.kochan.io)

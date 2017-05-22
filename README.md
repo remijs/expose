@@ -1,5 +1,7 @@
 # remi-expose
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/remijs/remi-expose.svg)](https://greenkeeper.io/)
+
 A remi extension that adds the expose method to the target
 
 [![Dependency Status](https://david-dm.org/remijs/remi-expose/status.svg?style=flat)](https://david-dm.org/remijs/remi-expose)
